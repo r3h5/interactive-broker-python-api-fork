@@ -1702,9 +1702,15 @@ class IBClient():
         # define request components
         endpoint = r'iserver/account/orders'
         req_type = 'GET'
+
+        filters= {'filters': ["inactive", "pending_submit", "pre_submitted", "submitted", "filled", "pending_cancel", "cancelled", "warn_state", "sort_by_time"]}
+        filters= {'filters': "submitted"}
+        
+        print('bar')
         content = self._make_request(
             endpoint=endpoint,
-            req_type=req_type
+            req_type=req_type,
+            json=filters
         )
 
         return content
